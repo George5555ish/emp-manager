@@ -4,25 +4,19 @@ import { Metadata } from 'next';
  
 export const metadata: Metadata = {
   title: {
-    template: '%s | Acme Dashboard | @lllariogonzalez',
-    default: 'Acme Dashboard by @lllariogonzalez',
+    template: '%s | Emp Management Dashboard | @george5555ish',
+    default: 'Emp Management Dashboard',
   },
-  description: 'The official Next.js Course Dashboard, built with App Router.',
+  description: 'Emp Management Dashboard',
   metadataBase: new URL('https://nextjs-dashboard-acme.vercel.app'),
-  authors: [{name: 'Mario Gonzalez', url:'https://www.linkedin.com/in/lllariogonzalez'}],
-  keywords: ['Next.js 14', 'Acme', 'Dashboard', 'nextjs.org/learn', 'Server Actions'],
+ 
+  keywords: ['Next.js 14', 'Emp', 'Dashboard', 'nextjs.org/learn', 'Server Actions'],
   openGraph: {
-    title: 'Acme Dashboard',
+    title: 'Emp Dashboard',
     description: 'The official Next.js Learn Dashboard built with App Router.',
-    url: 'https://nextjs-dashboard-acme.vercel.app',
+  
     type: 'website',
-  },
-  twitter: {
-    site: '@acme',
-    description:'The official Next.js Learn Dashboard built with App Router.',
-    title:'Acme Dashboard by @lllariogonzalez',
-    creator:'@lllariogonzalez',
-  },
+  }, 
 };
 
 export default function RootLayout({
