@@ -1,4 +1,5 @@
 import CardWrapper, { Card } from '@/app/ui/dashboard/cards';
+import ShiftCardWrapper from '@/app/ui/dashboard/shift-cards';
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
@@ -19,6 +20,10 @@ export default async function Page() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <Suspense fallback={<CardsSkeleton />}>
                 <CardWrapper />
+            </Suspense>
+
+            <Suspense fallback={<CardsSkeleton />}>
+                <ShiftCardWrapper />
             </Suspense>
             {/* <Card title="Collected" value={totalPaidInvoices} type="collected" />
             <Card title="Pending" value={totalPendingInvoices} type="pending" />

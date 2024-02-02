@@ -10,6 +10,7 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 import { unstable_noStore as noStore } from 'next/cache';
+import { generateNewShifts, getUpcomingShift, sortDates } from '../dashboard/helpers';
 
 export async function fetchRevenue() {
   // Add noStore() here prevent the response from being cached.
@@ -111,7 +112,7 @@ export async function fetchCardData() {
     const numberOfCustomers = Number(data[1].rows[0].count ?? '0');
     const totalPaidInvoices = formatCurrency(data[2].rows[0].paid ?? '0');
     const totalPendingInvoices = formatCurrency(data[2].rows[0].pending ?? '0');
-
+     
     return {
       numberOfCustomers,
       numberOfInvoices,
@@ -255,6 +256,36 @@ export async function fetchFilteredCustomers(query: string) {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
+  }
+}
+
+export async function fetchShiftInfo() {
+  noStore();
+  try {
+    // You can probably combine these into a single SQL query
+    // However, we are intentionally splitting them to demonstrate
+    // how to initialize multiple queries in parallel with JS.
+    // const shiftCountPromise = sql`SELECT COUNT(*) FROM shifts`; 
+    const shiftsPromise = sql`SELECT * FROM shifts`; 
+
+    const data = await Promise.all([
+      // shiftCountPromise, 
+      shiftsPromise
+    ]); 
+ 
+    const shifts =data[0].rows;
+    const sortedShifts = sortDates(shifts, 'asc')
+  const newShifts = generateNewShifts(sortedShifts);
+  const upcomingShift = getUpcomingShift(sortedShifts);
+  // console.log('upcoming shifts');
+  // console.log(upcomingShift); 
+    return { 
+      shiftCount: shifts.length, 
+      upcomingShift: upcomingShift  
+    };
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to card data.');
   }
 }
 
