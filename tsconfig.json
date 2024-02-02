@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "app/lib/placeholder-data.js",
     "scripts/seed.js"
-, "pages/api/cron/update-shifts.js"  ],
+, "pages/api/cron/update-shifts.js", "app/dashboard/helpers/index.js"  ],
   "exclude": ["node_modules"]
 }

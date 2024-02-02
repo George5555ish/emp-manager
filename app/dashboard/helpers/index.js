@@ -1,4 +1,4 @@
-export const generateNewShifts = (prevShift: any) => {
+export const generateNewShifts = (prevShift) => {
  
   const genericMatches = [
     "Chelsea Vs Southampton",
@@ -128,7 +128,7 @@ export const generateNewShifts = (prevShift: any) => {
   }
 };
 
-export const sortDates = (shifts: any[], direction: 'asc' | 'desc') => {
+export const sortDates = (shifts, direction ) => {
   const months = [
     "Jan",
     "Feb",
@@ -160,20 +160,20 @@ export const sortDates = (shifts: any[], direction: 'asc' | 'desc') => {
   });
   if (direction == 'desc'){
      return shiftDatesArray.sort(
-    (date1: any, date2: any) => new Date(date2.date) - new Date(date1.date)
+    (date1, date2) => new Date(date2.date) - new Date(date1.date)
   );
   } else {
     return shiftDatesArray.sort(
-        (date1: any, date2: any) => new Date(date1.date) - new Date(date2.date)
+        (date1, date2) => new Date(date1.date) - new Date(date2.date)
       );
   }
  
 };
 
 
-export const getUpcomingShift = (shifts: any[]) => {
+export const getUpcomingShift = (shifts ) => {
     const filteredDates =  shifts.filter(
-        (shift:any, idx:any) =>  {
+        (shift , idx ) =>  {
         //   console.log( new Date(shift.date))
         //   console.log(shift.length) 
 
